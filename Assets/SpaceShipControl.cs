@@ -8,7 +8,7 @@ public class SpaceShipControl : MonoBehaviour
     [SerializeField]
     public float deltaX, deltaY;
     Rigidbody2D r2d;
-   public  GameObject bullet;
+   //public  GameObject bullet;
     float fireRate,nextFire;
 
     void Start()
@@ -20,7 +20,7 @@ public class SpaceShipControl : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.touchCount > 0) ;
+        if (Input.touchCount > 0)
         {
             Touch touch = Input.GetTouch(0);
             Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
@@ -40,16 +40,16 @@ public class SpaceShipControl : MonoBehaviour
 
 
         }
-        CheckIfTime();
+       // CheckIfTime();
 
 
     }
-    void CheckIfTime()
-    {
-        if (Time.time> nextFire)
-        {
-            Instantiate(bullet, transform.position, Quaternion.identity);
-            nextFire = Time.time + fireRate;
-        }
-    }
+    //void CheckIfTime()
+    //{
+    //    if (Time.time> nextFire)
+    //    {
+    //        Instantiate(bullet, transform.position, Quaternion.identity);
+    //        nextFire = Time.time + fireRate;
+    //    }
+    //}
 }
