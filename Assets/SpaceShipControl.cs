@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -8,10 +9,12 @@ public class SpaceShipControl : Photon.MonoBehaviour
     [SerializeField]
     public float deltaX, deltaY;
     Rigidbody2D r2d;
-   //public  GameObject bullet;
+    public  GameObject bullet;
+    public GameObject PointBullet;
     float fireRate,nextFire;
 
     private Vector3 realpos = Vector3.zero;
+    float TimeShoot;
 
     void Start()
     {
@@ -48,19 +51,15 @@ public class SpaceShipControl : Photon.MonoBehaviour
 
         } else
         {
-            Sync();
+            Sync();   
         }
-       // CheckIfTime();
+
+        if (Time.time > nextFire) 
+            Shoot();     
         
     }
 
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
-        //Vector3 pos = transform.position;
-        //stream.Serialize(ref pos);
-        //if (stream.isReading)
-        //{
-        //    transform.position = pos;
-        //}
         if (stream.isWriting)
         {
             stream.SendNext(transform.position);
@@ -76,12 +75,9 @@ public class SpaceShipControl : Photon.MonoBehaviour
         transform.position = Vector3.Lerp(transform.position, realpos, 0.1f);
     }
 
-    //void CheckIfTime()
-    //{
-    //    if (Time.time> nextFire)
-    //    {
-    //        Instantiate(bullet, transform.position, Quaternion.identity);
-    //        nextFire = Time.time + fireRate;
-    //    }
-    //}
+    private void Shoot()
+    {
+        Instantiate(bullet,PointBullet.transform);
+        nextFire = Time.time + fireRate;        
+    }
 }
