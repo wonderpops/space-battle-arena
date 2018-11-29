@@ -2,7 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CONTROl : MonoBehaviour {
+public class backgroundColorChange : MonoBehaviour {
+
+    public GameObject background;
 
 	// Use this for initialization
 	void Start () {
@@ -11,6 +13,6 @@ public class CONTROl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        
 	}
 }

@@ -1,8 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using System.Timers;
 using UnityEngine;
 using UnityEngine.Experimental.UIElements;
+using UnityEngine.SceneManagement;
 
 public class startButtonPress : MonoBehaviour {
 
@@ -11,10 +14,14 @@ public class startButtonPress : MonoBehaviour {
     private Animator anim;
     public Animator animbtn;
     public Animator animShip;
-    
+    public Animator animFade;
+    public Button btn2;
+    public float targetTime = 60.0f;
 
-	// Use this for initialization
-	void Start () {
+
+
+    // Use this for initialization
+    void Start () {
         anim = GetComponent<Animator>();
     }
 	
@@ -22,7 +29,7 @@ public class startButtonPress : MonoBehaviour {
 	void Update () {
         anim.enabled = true;
         animbtn.enabled = true;
-        animShip.SetInteger("State", 3);
+        animShip.enabled = false;
         //animShip.SetInteger("State", 1);
         //       System.Timers.Timer aTimer = new System.Timers.Timer();
         //       aTimer.Elapsed+=new ElapsedEventHandler(OnTimedEvent);
@@ -32,5 +39,26 @@ public class startButtonPress : MonoBehaviour {
 
         //   public void OnTimedEvent(object source, ElapsedEventArgs e){
         //       animShip.SetInteger("State", 2);
+
+        targetTime -= Time.deltaTime;
+       
+
+        if (targetTime <= 1.8f)
+        {
+            animFade.enabled = true;
+        }
+
+        if (targetTime <= 0.0f)
+        {
+            timerEnded();
+        }
+
+
+
+    }
+
+    void timerEnded()
+    {
+        SceneManager.LoadScene("battle", LoadSceneMode.Single);
     }
 }

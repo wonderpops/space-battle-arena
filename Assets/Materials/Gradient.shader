@@ -1,7 +1,7 @@
 ﻿Shader "PressF/Gradient" {
 	Properties {
-		_Color ("Top", Color) = (1,1,1,1)
-		_Color1 ("Bottom", Color) = (1,1,1,1)
+		_Color ("Bottom", Color) = (1,1,1,1)
+		_Color1 ("Top", Color) = (1,1,1,1)
 		_MainTex ("Albedo (RGB)", 2D) = "white" {}
 	}
 	SubShader {
