@@ -21,6 +21,8 @@ GameObject:
   - component: {fileID: 4416792148721692}
   - component: {fileID: 212743511217634136}
   - component: {fileID: 50025050009068234}
+  - component: {fileID: 114842372887556632}
+  - component: {fileID: 61217382094786520}
   m_Layer: 0
   m_Name: bullet
   m_TagString: Untagged
@@ -61,6 +63,43 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!61 &61217382094786520
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508601493162604}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 1
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.13, y: 0.54}
+    newSize: {x: 0.13, y: 0.54}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 1
+  serializedVersion: 2
+  m_Size: {x: 0.13, y: 0.54}
+  m_EdgeRadius: 0
+--- !u!114 &114842372887556632
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1508601493162604}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 18ae229afdbd4f74cae2113a4174e692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Damage: 3
 --- !u!212 &212743511217634136
 SpriteRenderer:
   m_ObjectHideFlags: 1
