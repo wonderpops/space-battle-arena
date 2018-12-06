@@ -23,7 +23,6 @@ public class startButtonPress : MonoBehaviour {
     // Use this for initialization
     void Start () {
         anim = GetComponent<Animator>();
-        Instantiate(Resources.Load("Enemy"));
     }
 	
 	// Update is called once per frame

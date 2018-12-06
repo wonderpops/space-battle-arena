@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class SpaceShipControl : Photon.MonoBehaviour
 {
@@ -12,21 +12,34 @@ public class SpaceShipControl : Photon.MonoBehaviour
     public  GameObject bullet;
     public GameObject PointBullet;
     float fireRate,nextFire;
+    public Image hpBar;
 
     private Vector3 realpos = Vector3.zero;
     float TimeShoot;
 
+    public PlayerStats playerStats = new PlayerStats();
+
+    public class PlayerStats
+    {
+        public string name { get; set; }
+        public int hp { get; set; }
+    }
+
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
-        fireRate = 1f;
+        fireRate = 2f;
         nextFire = Time.time;
+
+        playerStats.hp = 10;
+        playerStats.name = GetComponent<PhotonView>().viewID.ToString();
+        gameObject.name = playerStats.name;
     }
-    // Update is called once per frame
+    
     void Update()
     {
         //your ship cheker
-        if (photonView.isMine)
+        if (photonView.isMine && gameObject.tag == "Player")
         {
             if (Input.touchCount > 0)
             {
@@ -49,35 +62,41 @@ public class SpaceShipControl : Photon.MonoBehaviour
 
             }
 
-        } else
+        }
+        else
         {
             Sync();   
         }
 
         if (Time.time > nextFire) 
-            Shoot();     
-        
+            Shoot();
     }
 
+    //streams
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting)
         {
             stream.SendNext(transform.position);
+            stream.SendNext((string)playerStats.name);
+            stream.SendNext((int)playerStats.hp);
         }
         else
         {
             realpos = (Vector3)stream.ReceiveNext();
+            playerStats.name = (string)stream.ReceiveNext();
+            playerStats.hp = (int)stream.ReceiveNext();
         }
     }
 
     void Sync()
     {
-        transform.position = Vector3.Lerp(transform.position, realpos, 0.1f);
+        if(gameObject.tag == "Player")
+            transform.position = Vector3.Lerp(transform.position, realpos, 0.1f);
     }
 
     private void Shoot()
     {
-        Instantiate(bullet,PointBullet.transform);
+        Instantiate(bullet, PointBullet.transform.position, PointBullet.transform.rotation);
         nextFire = Time.time + fireRate;        
     }
 }

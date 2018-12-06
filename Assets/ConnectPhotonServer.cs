@@ -49,11 +49,11 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
 
         Vector3 Player1StartPos = Vector3.zero;
         Vector3 Player2StartPos = Vector3.zero;
-        Quaternion Player2Quart = Quaternion.Euler(180, 180, 0);
+        Quaternion Player2Quart = Quaternion.Euler(180f, 180f, 0f);
     
         //Players spawn position set
-        Player1StartPos.Set(0f, -2.5f, -1f);
-        Player2StartPos.Set(0f, 4f, -2f);
+        Player1StartPos.Set(0f, -2.5f, 0f);
+        Player2StartPos.Set(0f, 4f, 0f);
         
         //Choose side and spawn player
         if(PhotonNetwork.playerList.Length == 1)
