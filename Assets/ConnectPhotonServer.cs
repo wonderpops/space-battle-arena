@@ -62,6 +62,8 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
         } else
         {
             PhotonNetwork.Instantiate("Player", Player2StartPos, Player2Quart, 0);
+            Camera cmr = GetComponent<Camera>();
+            cmr.transform.rotation = Player2Quart;
         }
 
         //start fadeout animation
