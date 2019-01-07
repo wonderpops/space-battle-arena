@@ -14,7 +14,6 @@ public class SpaceShip : Photon.MonoBehaviour
     public GameObject PointBullet;
     float fireRate,nextFire;
     public Image hpBar;
-    public GameObject game;
 
     private Vector3 realpos = Vector3.zero;
     float TimeShoot;

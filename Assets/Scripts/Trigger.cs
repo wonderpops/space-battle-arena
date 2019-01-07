@@ -20,7 +20,7 @@ public class Trigger : MonoBehaviour {
         SpaceShip player = col.GetComponent<SpaceShip>();
         PhotonView pv = col.GetComponent<PhotonView>();
         player.playerStats.Health -= 1;
-        player.hpBar.fillAmount = (float)player.playerStats.Health/ 10;
+        player.hpBar.fillAmount = (float)player.playerStats.Health  / 10;
         Debug.Log(player.playerStats.Health.ToString()+player.playerStats.Name);
         //pv.RPC("PlayerSoundTrigger", PhotonTargets.All, player.playerStats.name);
     }

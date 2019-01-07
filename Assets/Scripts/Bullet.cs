@@ -17,7 +17,6 @@ public class Bullet : Photon.MonoBehaviour {
         gameObject.transform.Translate(Vector3.up * Time.deltaTime * 5f);
         if ((gameObject.transform.position.y > 7) || (gameObject.transform.position.y < -7))
             Destroy(gameObject);
-        Debug.Log(gameObject.transform.position.x+" "+ gameObject.transform.position.y);
     }
 
 }

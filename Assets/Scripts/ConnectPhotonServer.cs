@@ -73,6 +73,7 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
         options.MaxPlayers = 2;
        
         // create room
-        PhotonNetwork.CreateRoom("Room1", options, TypedLobby.Default);
+        Debug.Log(PhotonNetwork.countOfPlayers.ToString());
+        PhotonNetwork.CreateRoom(PhotonNetwork.countOfPlayers.ToString(), options, TypedLobby.Default);
     }
 }
