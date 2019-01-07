@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Trigger : MonoBehaviour {
+public class Trigger : Photon.MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -21,7 +21,6 @@ public class Trigger : MonoBehaviour {
         PhotonView pv = col.GetComponent<PhotonView>();
         player.playerStats.Health -= 1;
         player.hpBar.fillAmount = (float)player.playerStats.Health  / 10;
-        Debug.Log(player.playerStats.Health.ToString()+player.playerStats.Name);
         //pv.RPC("PlayerSoundTrigger", PhotonTargets.All, player.playerStats.name);
     }
 
@@ -32,8 +31,7 @@ public class Trigger : MonoBehaviour {
         if (col.tag == "Player")
         {
             HP(col);
-
-            if (!PhotonNetwork.isMasterClient)
+            if (photonView.isMine)
                 PhotonNetwork.Destroy(gameObject);
         }
     }

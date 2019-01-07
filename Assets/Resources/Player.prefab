@@ -21,8 +21,6 @@ GameObject:
   - component: {fileID: 4912420134380460}
   - component: {fileID: 212895546467038254}
   - component: {fileID: 95898071602650902}
-  - component: {fileID: 114406040716890344}
-  - component: {fileID: 114360887189102474}
   - component: {fileID: 114742156307955060}
   - component: {fileID: 114666262926449282}
   - component: {fileID: 61324828746198764}
@@ -240,33 +238,6 @@ MonoBehaviour:
   m_FillAmount: 1
   m_FillClockwise: 1
   m_FillOrigin: 1
---- !u!114 &114360887189102474
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1029433194875182}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f4602c1b1e4a32478728699d6053dfc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 1508601493162604, guid: 84e845884bf6825459f4bb4fbfb4dbba, type: 2}
-  pointBullet: {fileID: 1143725353565850}
---- !u!114 &114406040716890344
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1029433194875182}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddaa9898f85c92a4094913d728670230, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  StartHp: 10
-  Hp: 10
-  HpBar: {fileID: 114662820586500846}
 --- !u!114 &114662820586500846
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -336,7 +307,6 @@ MonoBehaviour:
   bullet: {fileID: 1508601493162604, guid: 84e845884bf6825459f4bb4fbfb4dbba, type: 2}
   PointBullet: {fileID: 1143725353565850}
   hpBar: {fileID: 114241859211889132}
-  game: {fileID: 0}
 --- !u!114 &114748184048335128
 MonoBehaviour:
   m_ObjectHideFlags: 1
