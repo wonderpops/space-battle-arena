@@ -17,7 +17,7 @@ public class Trigger : MonoBehaviour {
 
     private void HP(Collider2D col)
     {
-        SpaceShipControl player = col.GetComponent<SpaceShipControl>();
+        SpaceShip player = col.GetComponent<SpaceShip>();
         PhotonView pv = col.GetComponent<PhotonView>();
         player.playerStats.Health -= 1;
         player.hpBar.fillAmount = (float)player.playerStats.Health/ 10;
@@ -27,7 +27,7 @@ public class Trigger : MonoBehaviour {
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        SpaceShipControl player = col.GetComponent<SpaceShipControl>();
+        SpaceShip player = col.GetComponent<SpaceShip>();
 
         if (col.tag == "Player")
         {

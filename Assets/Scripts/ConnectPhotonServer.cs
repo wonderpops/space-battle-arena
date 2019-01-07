@@ -25,21 +25,7 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
     void OnGUI()
     {
         // connect status info in top of the screen
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-        
-        //if (!isSpawning)
-        //{
-        //    if (!PhotonNetwork.connected)
-        //    {
-               
-        //    }
-        //}
-        //else if (PhotonNetwork.room == null)
-        //{
-        //    //PhotonNetwork.JoinLobby();
-        //    //PhotonNetwork.CreateRoom("test", new RoomOptions(), TypedLobby.Default);
-        //}
-       
+        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());    
     }
 
 

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SpaceShipControl : Photon.MonoBehaviour
+public class SpaceShip : Photon.MonoBehaviour
 {
     [SerializeField]
     public float deltaX, deltaY;
@@ -43,7 +43,8 @@ public class SpaceShipControl : Photon.MonoBehaviour
     {
         //your ship cheker
         if (photonView.isMine)
-        {
+        {   
+            // control
             if (Input.touchCount > 0)
             {
                 Touch touch = Input.GetTouch(0);
@@ -63,6 +64,7 @@ public class SpaceShipControl : Photon.MonoBehaviour
                 }
             }
             
+            // shooting
             if ((Time.time > nextFire) && (ConnectPhotonServer.isGameStarted == true))
             {
                 Shoot();
