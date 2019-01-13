@@ -13,7 +13,8 @@ public class SpaceShip : Photon.MonoBehaviour
     public  GameObject bullet;
     public GameObject PointBullet;
     float fireRate,nextFire;
-    public Image hpBar;
+    public GameObject hpBar1;
+    public GameObject hpBar2;
 
     private Vector3 realpos = Vector3.zero;
     float TimeShoot;
@@ -24,6 +25,7 @@ public class SpaceShip : Photon.MonoBehaviour
     public class PlayerStats
     {
         public string Name { get; set; }
+        public int Team { get; set; }
         public int Health { get; set; }
     }
 
@@ -35,13 +37,30 @@ public class SpaceShip : Photon.MonoBehaviour
 
         playerStats.Health = 10;
         playerStats.Name = GetComponent<PhotonView>().viewID.ToString();
+        playerStats.Team = photonView.group;
+
         gameObject.name = playerStats.Name;
+
+        hpBar1 = GameObject.Find("Bar1");
+        hpBar2 = GameObject.Find("Bar2");
+
+        if (ConnectPhotonServer.isGameStarted){
+            if (!hpBar1.GetComponent<Image>().enabled) {
+                hpBar1 = GameObject.Find("Bar2");
+                hpBar1.GetComponent<Image>().enabled = true;
+                hpBar2 = GameObject.Find("Bar1");
+                hpBar2.GetComponent<Image>().enabled = true;
+            } else {
+                hpBar1.GetComponent<Image>().enabled = true; 
+                hpBar2.GetComponent<Image>().enabled = true;     
+            }
+        }
     }
     
     void Update()
     {
         //your ship cheker
-        if (photonView.isMine)
+        if ((photonView.isMine))
         {   
             // control
             if (Input.touchCount > 0)
@@ -64,7 +83,7 @@ public class SpaceShip : Photon.MonoBehaviour
             }
             
             // shooting
-            if ((Time.time > nextFire) && (ConnectPhotonServer.isGameStarted == true))
+            if ((Time.time > nextFire) && (ConnectPhotonServer.isGameStarted) && (!ConnectPhotonServer.isGameFinished))
             {
                 Shoot();
             }
@@ -73,6 +92,11 @@ public class SpaceShip : Photon.MonoBehaviour
         {
             Sync();   
         }
+
+        if (playerStats.Health == 0){
+           ConnectPhotonServer.isGameFinished = true; 
+        } 
+        
     }
 
     //streams
@@ -80,17 +104,18 @@ public class SpaceShip : Photon.MonoBehaviour
         if (stream.isWriting)
         {
             stream.SendNext(transform.position);
-            stream.SendNext((string)playerStats.Name);
-            stream.SendNext((int)playerStats.Health);
+            stream.SendNext(playerStats.Health);
             stream.SendNext((bool)ConnectPhotonServer.isGameStarted);
+            stream.SendNext((bool)ConnectPhotonServer.isGameFinished);
         }
         else
         {
             realpos = (Vector3)stream.ReceiveNext();
-            playerStats.Name = (string)stream.ReceiveNext();
             playerStats.Health = (int)stream.ReceiveNext();
             if (!ConnectPhotonServer.isGameStarted)
                 ConnectPhotonServer.isGameStarted = (bool)stream.ReceiveNext();
+            if (ConnectPhotonServer.isGameFinished)
+                ConnectPhotonServer.isGameFinished = (bool)stream.ReceiveNext();
         }
     }
 
@@ -103,6 +128,6 @@ public class SpaceShip : Photon.MonoBehaviour
     private void Shoot()
     {
         PhotonNetwork.Instantiate("bullet", PointBullet.transform.position, PointBullet.transform.rotation, 0);
-        nextFire = Time.time + fireRate;        
+        nextFire = Time.time + fireRate;       
     }
 }

@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class Trigger : Photon.MonoBehaviour {
 
+    private Collider2D col;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -15,13 +17,26 @@ public class Trigger : Photon.MonoBehaviour {
 		
 	}
 
-    private void HP(Collider2D col)
+    private void SetHealth(Collider2D col)
     {
         SpaceShip player = col.GetComponent<SpaceShip>();
         PhotonView pv = col.GetComponent<PhotonView>();
         player.playerStats.Health -= 1;
-        player.hpBar.fillAmount = (float)player.playerStats.Health  / 10;
+        Debug.Log(player.playerStats.Name +" "+ player.playerStats.Health);
+        player.hpBar1.GetComponent<Image>().fillAmount = (float)player.playerStats.Health  / 10;
         //pv.RPC("PlayerSoundTrigger", PhotonTargets.All, player.playerStats.name);
+    }
+
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+        if (col != null){
+            if (stream.isWriting){
+                Debug.Log("YES");
+                stream.SendNext(col.GetComponent<SpaceShip>().playerStats.Health);
+            } else {
+                col.GetComponent<SpaceShip>().playerStats.Health = (int)stream.ReceiveNext();
+            }
+
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -30,9 +45,9 @@ public class Trigger : Photon.MonoBehaviour {
 
         if (col.tag == "Player")
         {
-            HP(col);
-            if (photonView.isMine)
-                PhotonNetwork.Destroy(gameObject);
+            SetHealth(col);
+            // if (photonView.isMine)
+            //     PhotonNetwork.Destroy(gameObject);
         }
     }
 }

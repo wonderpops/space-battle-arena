@@ -8,6 +8,7 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
     public Animator fadeout;
     public Camera mainCam;
     public static bool isGameStarted { get; set; }
+    public static bool isGameFinished { get; set; }
 
     void Start ()
     {
@@ -72,8 +73,7 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 2;
        
-        // create room
-        Debug.Log(PhotonNetwork.countOfPlayers.ToString());
+        // create room 
         PhotonNetwork.CreateRoom(PhotonNetwork.countOfPlayers.ToString(), options, TypedLobby.Default);
     }
 }
