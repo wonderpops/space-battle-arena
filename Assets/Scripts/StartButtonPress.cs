@@ -7,7 +7,7 @@ using UnityEngine;
 using UnityEngine.Experimental.UIElements;
 using UnityEngine.SceneManagement;
 
-public class startButtonPress : MonoBehaviour {
+public class StartButtonPress : MonoBehaviour {
 
     private Button btn;
 
@@ -30,15 +30,6 @@ public class startButtonPress : MonoBehaviour {
         anim.enabled = true;
         animbtn.enabled = true;
         animShip.enabled = false;
-        //animShip.SetInteger("State", 1);
-        //       System.Timers.Timer aTimer = new System.Timers.Timer();
-        //       aTimer.Elapsed+=new ElapsedEventHandler(OnTimedEvent);
-        //       aTimer.Interval=1000;
-        //       aTimer.Enabled=true;
-        //}
-
-        //   public void OnTimedEvent(object source, ElapsedEventArgs e){
-        //       animShip.SetInteger("State", 2);
 
         targetTime -= Time.deltaTime;
        

@@ -6,37 +6,33 @@ using UnityEngine.UI;
 public class ConnectPhotonServer : Photon.MonoBehaviour {
 
     public Animator fadeout;
+    public Camera mainCam;
+    public static bool isGameStarted { get; set; }
+    public static bool isGameFinished { get; set; }
 
     void Start ()
     {
-        //connect to photon cloud
+        // connect to photon cloud
         PhotonNetwork.ConnectUsingSettings("0.1");
+        isGameStarted = false;
 	}
+
+    private void Update()
+    {
+        if (isGameStarted)
+            fadeout.enabled = true;
+    }
 
     void OnGUI()
     {
-        //connect status info in top of the screen
-        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());
-        
-        //if (!isSpawning)
-        //{
-        //    if (!PhotonNetwork.connected)
-        //    {
-               
-        //    }
-        //}
-        //else if (PhotonNetwork.room == null)
-        //{
-        //    //PhotonNetwork.JoinLobby();
-        //    //PhotonNetwork.CreateRoom("test", new RoomOptions(), TypedLobby.Default);
-        //}
-       
+        // connect status info in top of the screen
+        GUILayout.Label(PhotonNetwork.connectionStateDetailed.ToString());    
     }
 
 
     void OnJoinedLobby()
     {
-        //when player join in lobby
+        // when player join in lobby
         Debug.Log("OnJoinedLobby");
 
         PhotonNetwork.JoinRandomRoom();
@@ -44,43 +40,40 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
 
     void OnJoinedRoom()
     {
-        //When player joined in room
+        // When player joined in room
         Debug.Log("OnJoinedRoom");
 
         Vector3 Player1StartPos = Vector3.zero;
         Vector3 Player2StartPos = Vector3.zero;
         Quaternion Player2Quart = Quaternion.Euler(180f, 180f, 0f);
     
-        //Players spawn position set
+        // Players spawn position set
         Player1StartPos.Set(0f, -2.5f, 0f);
         Player2StartPos.Set(0f, 4f, 0f);
         
-        //Choose side and spawn player
-        if(PhotonNetwork.playerList.Length == 1)
+        // Choose side and spawn player
+        if (PhotonNetwork.playerList.Length == 1)
         {
             PhotonNetwork.Instantiate("Player", Player1StartPos, Quaternion.identity, 0);
         } else
         {
+            mainCam.transform.rotation = Player2Quart;
             PhotonNetwork.Instantiate("Player", Player2StartPos, Player2Quart, 0);
-            Camera cmr = GetComponent<Camera>();
-            cmr.transform.rotation = Player2Quart;
+            fadeout.enabled = true;
+            isGameStarted = true;
         }
-
-        //start fadeout animation
-        fadeout.enabled = true;
-       
     }
 
     void OnPhotonRandomJoinFailed()
     {
-        //Create room if join in random room failed
+        // Create room if join in random room failed
         Debug.Log("OnJoinRandomFailed");
 
-        //Set room options
+        // Set room options
         RoomOptions options = new RoomOptions();
         options.MaxPlayers = 2;
        
-        //create room
-        PhotonNetwork.CreateRoom("Room1", options, TypedLobby.Default);
+        // create room 
+        PhotonNetwork.CreateRoom(PhotonNetwork.countOfPlayers.ToString(), options, TypedLobby.Default);
     }
 }
