@@ -156,9 +156,36 @@ public class SpaceShip : Photon.MonoBehaviour
         }
 
         if (playerStats.Health == 0){
-           ConnectPhotonServer.isGameFinished = true; 
+           FinishGame();
         } 
         
+    }
+
+    void FinishGame(){
+        GameObject endWindow;
+
+        ConnectPhotonServer.isGameFinished = true; 
+        if (photonView.isMine){
+            if (playerStats.Health == 0) {
+                endWindow = GameObject.Find("YouWin");
+                endWindow.GetComponent<Image>().enabled = true;
+                foreach (var img in endWindow.GetComponentsInChildren<Image>()) {
+                    img.enabled = true;    
+                }
+                foreach (var txt in endWindow.GetComponentsInChildren<Text>()) {
+                    txt.enabled = true;    
+                }
+            } else {
+                endWindow = GameObject.Find("YouLose");
+                endWindow.GetComponent<Image>().enabled = true;
+                foreach (var img in endWindow.GetComponentsInChildren<Image>()) {
+                    img.enabled = true;    
+                }
+                foreach (var txt in endWindow.GetComponentsInChildren<Text>()) {
+                    txt.enabled = true;    
+                }
+            }
+        }
     }
 
     void Control(Touch touch, Vector2 touchPos)
