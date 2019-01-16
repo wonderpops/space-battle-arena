@@ -66,20 +66,81 @@ public class SpaceShip : Photon.MonoBehaviour
             // control
             if (Input.touchCount > 0)
             {
-                Touch touch = Input.GetTouch(0);
-                Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-                switch (touch.phase)
+                if (Input.touchCount > 0)
                 {
-                    case TouchPhase.Began:
-                        deltaX = touchPos.x - +transform.position.x;
-                        deltaY = touchPos.y - +transform.position.y;
-                        break;
-                    case TouchPhase.Moved:
-                        r2d.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
-                        break;
-                    case TouchPhase.Ended:
-                        r2d.velocity = Vector2.zero;
-                        break;
+                    Touch touch = Input.GetTouch(0);
+                    Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
+                    Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+                    Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+
+                    if (transform.position.x > max.x)
+                    {
+                        transform.SetPositionAndRotation(new Vector2(max.x, transform.position.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if (transform.position.x < min.x)
+                    {
+                        transform.SetPositionAndRotation(new Vector2(min.x, transform.position.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if (transform.position.y > max.y)
+                    {
+                        transform.SetPositionAndRotation(new Vector2(transform.position.x, max.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if (transform.position.y < min.y)
+                    {
+                        transform.SetPositionAndRotation(new Vector2(transform.position.x, min.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+
+
+                    if ((transform.position.x > max.x) && (transform.position.y < min.y))
+                    {
+                        transform.SetPositionAndRotation(new Vector2(max.x, min.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if ((transform.position.x < min.x) && (transform.position.y < min.y))
+                    {
+                        transform.SetPositionAndRotation(new Vector2(min.x, min.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if ((transform.position.y > max.y) && (transform.position.x > max.x))
+                    {
+                        transform.SetPositionAndRotation(new Vector2(max.x, max.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+                    if ((transform.position.y > max.y) && (transform.position.x < min.x))
+                    {
+                        transform.SetPositionAndRotation(new Vector2(min.x, max.y), transform.rotation);
+                    }
+                    else
+                    {
+                        Control(touch, touchPos);
+                    }
+
+
                 }
             }
             
@@ -98,6 +159,35 @@ public class SpaceShip : Photon.MonoBehaviour
            ConnectPhotonServer.isGameFinished = true; 
         } 
         
+    }
+
+    void Control(Touch touch, Vector2 touchPos)
+    {
+
+        switch (touch.phase)
+        {
+            case TouchPhase.Began:
+                deltaX = touchPos.x - +transform.position.x;
+                deltaY = touchPos.y - +transform.position.y;
+                break;
+            case TouchPhase.Moved:
+                //if (r2d.transform.position.y > 1)
+                //{
+                //    r2d.MovePosition(new Vector2(touchPos.x - deltaX, 1));
+                //    //r2d.velocity = Vector2.zero;
+
+                //}
+                //else
+                //{
+
+                r2d.MovePosition(new Vector2(touchPos.x - deltaX, touchPos.y - deltaY));
+                //}
+
+                break;
+            case TouchPhase.Ended:
+                r2d.velocity = Vector2.zero;
+                break;
+        }
     }
 
     //streams
@@ -135,4 +225,11 @@ public class SpaceShip : Photon.MonoBehaviour
         }
         nextFire = Time.time + fireRate;       
     }
+
+    //auto shoot
+    // void Shoot1()
+    //{
+    //    Instantiate(autobullet, PointBullet.transform.position, PointBullet.transform.rotation);
+    //    nextFire = Time.time + fireRate;
+    //}
 }

@@ -88,7 +88,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1286371770574426}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.328, y: 0.8, z: -1}
+  m_LocalPosition: {x: -5.5664625, y: -1.7839162, z: -1}
   m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_Children:
   - {fileID: 4900837179048686}
@@ -207,12 +207,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1286371770574426}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0097c4d884f9ea24ba9a49fc0994753b, type: 3}
+  m_Script: {fileID: 11500000, guid: 99974a1d7f17f35479f7d02a306e6a5b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   deltaX: 0
   deltaY: 0
-  bullet: {fileID: 1508601493162604, guid: 84e845884bf6825459f4bb4fbfb4dbba, type: 2}
+  bullet: {fileID: 1940899049764246, guid: a76cc164d8b2a034d9824918106fc3ea, type: 2}
   PointBullet: {fileID: 1942943728350728}
   hpBar1: {fileID: 0}
   hpBar2: {fileID: 0}
