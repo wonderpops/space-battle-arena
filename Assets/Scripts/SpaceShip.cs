@@ -70,8 +70,16 @@ public class SpaceShip : Photon.MonoBehaviour
                 {
                     Touch touch = Input.GetTouch(0);
                     Vector2 touchPos = Camera.main.ScreenToWorldPoint(touch.position);
-                    Vector2 min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
-                    Vector2 max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+                    Vector2 min;
+                    Vector2 max;
+
+                    if (playerStats.Team == 1) {
+                        min = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+                        max = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+                    } else {
+                        max = Camera.main.ViewportToWorldPoint(new Vector2(0, 0));
+                        min = Camera.main.ViewportToWorldPoint(new Vector2(1, 1));
+                    }
 
                     if (transform.position.x > max.x)
                     {
