@@ -37,7 +37,7 @@ public class SpaceShip : Photon.MonoBehaviour
 
         playerStats.Health = 10;
         playerStats.Name = GetComponent<PhotonView>().viewID.ToString();
-        playerStats.Team = photonView.group;
+        playerStats.Team = 1;
 
         gameObject.name = playerStats.Name;
 
@@ -46,6 +46,7 @@ public class SpaceShip : Photon.MonoBehaviour
 
         if (ConnectPhotonServer.isGameStarted){
             if (!hpBar1.GetComponent<Image>().enabled) {
+                playerStats.Team = 2;
                 hpBar1 = GameObject.Find("Bar2");
                 hpBar1.GetComponent<Image>().enabled = true;
                 hpBar2 = GameObject.Find("Bar1");
@@ -127,7 +128,11 @@ public class SpaceShip : Photon.MonoBehaviour
 
     private void Shoot()
     {
-        PhotonNetwork.Instantiate("bullet", PointBullet.transform.position, PointBullet.transform.rotation, 0);
+        if (playerStats.Team == 1){
+            PhotonNetwork.Instantiate("Bullet1", PointBullet.transform.position, PointBullet.transform.rotation, 0);
+        } else {
+            PhotonNetwork.Instantiate("Bullet2", PointBullet.transform.position, PointBullet.transform.rotation, 0); 
+        }
         nextFire = Time.time + fireRate;       
     }
 }

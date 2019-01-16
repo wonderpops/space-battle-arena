@@ -10,46 +10,40 @@ using UnityEngine.SceneManagement;
 public class StartButtonPress : MonoBehaviour {
 
     private Button btn;
-
-    private Animator anim;
-    public Animator animbtn;
-    public Animator animShip;
     public Animator animFade;
-    public Button btn2;
-    public float targetTime = 60.0f;
+    public Animator animBtn;
+    public float targetTime;
+    private Boolean wasPressed = false;
 
 
 
     // Use this for initialization
     void Start () {
-        anim = GetComponent<Animator>();
     }
 	
 	// Update is called once per frame
 	void Update () {
-        anim.enabled = true;
-        animbtn.enabled = true;
-        animShip.enabled = false;
-
-        targetTime -= Time.deltaTime;
-       
+        if (wasPressed)
+            targetTime -= Time.deltaTime;
 
         if (targetTime <= 1.8f)
         {
             animFade.enabled = true;
+            animBtn.enabled = true;
         }
 
         if (targetTime <= 0.0f)
         {
             timerEnded();
         }
-
-
-
     }
 
+   public void Press () {
+        wasPressed = true;
+    }
+    
     void timerEnded()
     {
-        SceneManager.LoadScene("battle", LoadSceneMode.Single);
+        SceneManager.LoadScene("Battle", LoadSceneMode.Single);
     }
 }

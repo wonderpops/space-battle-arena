@@ -54,11 +54,11 @@ public class ConnectPhotonServer : Photon.MonoBehaviour {
         // Choose side and spawn player
         if (PhotonNetwork.playerList.Length == 1)
         {
-            PhotonNetwork.Instantiate("Player", Player1StartPos, Quaternion.identity, 0);
+            PhotonNetwork.Instantiate("Player1", Player1StartPos, Quaternion.identity, 0);
         } else
         {
             mainCam.transform.rotation = Player2Quart;
-            PhotonNetwork.Instantiate("Player", Player2StartPos, Player2Quart, 0);
+            PhotonNetwork.Instantiate("Player2", Player2StartPos, Player2Quart, 0);
             fadeout.enabled = true;
             isGameStarted = true;
         }
