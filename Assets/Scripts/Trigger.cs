@@ -28,6 +28,7 @@ public class Trigger : Photon.MonoBehaviour
         player.playerStats.Health -= 1;
         Debug.Log(player.playerStats.Name + " " + player.playerStats.Health);
         player.hpBar1.GetComponent<Image>().fillAmount = (float)player.playerStats.Health / 10;
+        //player.hpBar2.GetComponent<Image>().fillAmount = (float)player.playerStats.opponentHealth / 10;
         //pv.RPC("PlayerSoundTrigger", PhotonTargets.All, player.playerStats.name);
     }
 
@@ -49,14 +50,13 @@ public class Trigger : Photon.MonoBehaviour
     {
         SpaceShip player = col.GetComponent<SpaceShip>();
 
-        if (col.tag == "Player")
+        if (((gameObject.name == "Bullet2(Clone)") && (player.playerStats.Team == 1)) || ((gameObject.name == "Bullet1(Clone)") && (player.playerStats.Team == 2)))
         {
+            PlayExplosion();
             SetHealth(col);
-            // if (photonView.isMine)
-            //     PhotonNetwork.Destroy(gameObject);
         }
 
-        if (col.tag != "bullet")
+        if ((col.tag != "bullet") && ((gameObject.name == "Bullet2(Clone)") && (player.playerStats.Team == 1)) || ((gameObject.name == "Bullet1(Clone)") && (player.playerStats.Team == 2)))
         {
             PlayExplosion();
             PhotonNetwork.Destroy(gameObject);
