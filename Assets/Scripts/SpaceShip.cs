@@ -12,6 +12,7 @@ public class SpaceShip : Photon.MonoBehaviour
     Rigidbody2D r2d;
     public  GameObject bullet;
     public GameObject PointBullet;
+
     float fireRate, nextFire;
     float tryConRate, nextCon;
     public GameObject hpBar1;
@@ -35,6 +36,7 @@ public class SpaceShip : Photon.MonoBehaviour
     void Start()
     {
         r2d = GetComponent<Rigidbody2D>();
+
         fireRate = 0.8f;
         tryConRate = 10f;
         nextCon = Time.time + tryConRate;

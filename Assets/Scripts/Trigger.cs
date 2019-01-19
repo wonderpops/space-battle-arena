@@ -3,20 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Trigger : Photon.MonoBehaviour {
+public class Trigger : Photon.MonoBehaviour
+{
 
     private Collider2D col;
     public GameObject Explosionclass;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+    // Use this for initialization
+    void Start()
+    {
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+    }
 
     private void SetHealth(Collider2D col)
     {
@@ -28,7 +31,8 @@ public class Trigger : Photon.MonoBehaviour {
         //pv.RPC("PlayerSoundTrigger", PhotonTargets.All, player.playerStats.name);
     }
 
-    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
+    void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info)
+    {
         //if (col != null){
         //    if (stream.isWriting){
         //        Debug.Log("YES");
@@ -42,7 +46,7 @@ public class Trigger : Photon.MonoBehaviour {
 
 
     private void OnTriggerEnter2D(Collider2D col)
-        {
+    {
         SpaceShip player = col.GetComponent<SpaceShip>();
 
         if (col.tag == "Player")
@@ -52,14 +56,12 @@ public class Trigger : Photon.MonoBehaviour {
             //     PhotonNetwork.Destroy(gameObject);
         }
 
-
-
         if (col.tag != "bullet")
         {
-                PlayExplosion();
-                PhotonNetwork.Destroy(gameObject);
+            PlayExplosion();
+            PhotonNetwork.Destroy(gameObject);
         }
-         
+
     }
 
     void PlayExplosion()
@@ -67,4 +69,5 @@ public class Trigger : Photon.MonoBehaviour {
         GameObject explosion = (GameObject)Instantiate(Explosionclass);
         explosion.transform.position = transform.position;
     }
-    }
+}
+
