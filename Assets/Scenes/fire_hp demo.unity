@@ -331,7 +331,7 @@ Transform:
   m_Children:
   - {fileID: 773545980}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &617075132
 GameObject:
@@ -1469,7 +1469,7 @@ Transform:
   m_LocalScale: {x: 10.202113, y: 15.987693, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1321794883
 MonoBehaviour:
@@ -1631,7 +1631,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1472204814
 GameObject:
@@ -1665,7 +1665,7 @@ Transform:
   - {fileID: 1438300799}
   - {fileID: 369246612}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1483774655
 GameObject:
@@ -1971,6 +1971,58 @@ Transform:
   m_Father: {fileID: 1690201484}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1001 &1678676855
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0.31
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 3.69
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4970341769407030, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 224913948846679498, guid: 6aff97dd5bffc3743870d2d570b65d89,
+        type: 2}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.03
+      objectReference: {fileID: 0}
+    - target: {fileID: 224913948846679498, guid: 6aff97dd5bffc3743870d2d570b65d89,
+        type: 2}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.07
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 6aff97dd5bffc3743870d2d570b65d89, type: 2}
+  m_IsPrefabAsset: 0
 --- !u!1 &1690201483
 GameObject:
   m_ObjectHideFlags: 0
@@ -2006,7 +2058,7 @@ Transform:
   - {fileID: 128524217}
   - {fileID: 1483774657}
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!95 &1690201485
 Animator:
@@ -2265,12 +2317,12 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2045688186}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.009, y: -2.26, z: -1}
+  m_LocalPosition: {x: -0.1, y: -2.57, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411617159}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2045688190
 BoxCollider2D:
@@ -2332,6 +2384,8 @@ MonoBehaviour:
   deltaY: 0
   bullet: {fileID: 1508601493162604, guid: 84e845884bf6825459f4bb4fbfb4dbba, type: 2}
   PointBullet: {fileID: 411617158}
+  autobullet: {fileID: 1508601493162604, guid: c50c91292c12cd640b1393331e5ba4e4, type: 2}
+  hpBar: {fileID: 0}
 --- !u!114 &2045688193
 MonoBehaviour:
   m_ObjectHideFlags: 0
