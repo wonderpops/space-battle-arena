@@ -4,13 +4,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Threading;
 
 public class SpaceShip : Photon.MonoBehaviour
 {
     [SerializeField]
     public float deltaX, deltaY;
     Rigidbody2D r2d;
-    public  GameObject bullet;
     public GameObject PointBullet;
 
     float fireRate, nextFire;
@@ -31,6 +31,7 @@ public class SpaceShip : Photon.MonoBehaviour
         public string Name { get; set; }
         public int Team { get; set; }
         public int Health { get; set; }
+       // public int opponentHealth { get; set; }
     }
 
     void Start()
@@ -43,6 +44,7 @@ public class SpaceShip : Photon.MonoBehaviour
         nextFire = Time.time;
 
         playerStats.Health = 10;
+        //playerStats.opponentHealth = 10;
         playerStats.Name = GetComponent<PhotonView>().viewID.ToString();
         playerStats.Team = 1;
 
@@ -56,6 +58,8 @@ public class SpaceShip : Photon.MonoBehaviour
             hpBar1 = GameObject.Find("Bar2");
             hpBar2 = GameObject.Find("Bar1");
         }
+
+        Debug.Log("Team: "+ playerStats.Team.ToString());
 
         hpBar1.GetComponent<Image>().enabled = true; 
         hpBar2.GetComponent<Image>().enabled = true; 
@@ -200,10 +204,10 @@ public class SpaceShip : Photon.MonoBehaviour
 
     void FinishGame()
     {
+
         GameObject endWindow;
         isGameEnded = true;
-        PhotonNetwork.DestroyAll();
-        
+        PhotonNetwork.DestroyAll();  
 
         if (playerStats.Health <= 0)
         {
@@ -224,6 +228,7 @@ public class SpaceShip : Photon.MonoBehaviour
         else
         {
             endWindow = GameObject.Find("YouWin");
+            Thread.Sleep(1000);
             endWindow.GetComponent<Image>().enabled = true;
             foreach (var img in endWindow.GetComponentsInChildren<Image>())
             {
@@ -236,6 +241,7 @@ public class SpaceShip : Photon.MonoBehaviour
         }
 
         playerStats.Health = 10;
+       // playerStats.opponentHealth = 10;
         ConnectPhotonServer.isGameStarted = false;
         ConnectPhotonServer.isGameFinished = false;
         PhotonNetwork.Disconnect();
@@ -263,6 +269,22 @@ public class SpaceShip : Photon.MonoBehaviour
     void OnPhotonSerializeView(PhotonStream stream, PhotonMessageInfo info) {
         if (stream.isWriting)
         {
+            //if (photonView.isMine)
+            //{
+            //    if (playerStats.Team == 1)
+            //    {
+            //        stream.SendNext(playerStats.Health);
+            //        stream.SendNext(playerStats.opponentHealth);
+            //    }
+
+            //    if (playerStats.Team == 2)
+            //    {
+            //        stream.SendNext(playerStats.Health);
+            //        stream.SendNext(playerStats.opponentHealth);
+            //    }
+
+            //}
+
             stream.SendNext(transform.position);
             stream.SendNext(playerStats.Health);
             stream.SendNext((bool)ConnectPhotonServer.isGameStarted);
@@ -270,6 +292,22 @@ public class SpaceShip : Photon.MonoBehaviour
         }
         else
         {
+            //if (!photonView.isMine)
+            //{
+            //    if (playerStats.Team == 1)
+            //    {
+            //        playerStats.opponentHealth = (int)stream.ReceiveNext();
+            //        playerStats.Health = (int)stream.ReceiveNext();
+            //    }
+
+
+            //    if (playerStats.Team == 2)
+            //    {
+            //        playerStats.opponentHealth = (int)stream.ReceiveNext();
+            //        playerStats.Health = (int)stream.ReceiveNext();
+            //    }
+            //}
+
             realpos = (Vector3)stream.ReceiveNext();
             playerStats.Health = (int)stream.ReceiveNext();
             if (!ConnectPhotonServer.isGameStarted)
@@ -281,7 +319,6 @@ public class SpaceShip : Photon.MonoBehaviour
 
     void Sync()
     {
-        if(gameObject.tag == "Player")
             transform.position = Vector3.Lerp(transform.position, realpos, 10f * Time.deltaTime);
     }
 

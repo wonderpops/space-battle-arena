@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LetsMove : Photon.MonoBehaviour
+public class AsteroidsSpawn : Photon.MonoBehaviour
 {
     float fireRate, nextFire,wait;
     bool flag;

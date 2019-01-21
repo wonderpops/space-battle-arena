@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Lets : Photon.MonoBehaviour
+public class AsteroidsMove : Photon.MonoBehaviour
 {
+    public GameObject asteroids;
     // Use this for initialization
     
     void Start () {

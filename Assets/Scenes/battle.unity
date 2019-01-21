@@ -1083,7 +1083,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1118419643}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.04, y: 0, z: -9.921723}
+  m_LocalPosition: {x: -2.48, y: -0.34, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1708,7 +1708,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1524220593}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: 4.03, y: 0, z: -9.921723}
+  m_LocalPosition: {x: 2.38, y: 0.17, z: -7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -1926,6 +1926,7 @@ GameObject:
   - component: {fileID: 2019606537}
   - component: {fileID: 2019606536}
   - component: {fileID: 2019606535}
+  - component: {fileID: 2019606538}
   m_Layer: 5
   m_Name: FadeOut
   m_TagString: Untagged
@@ -2003,3 +2004,16 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2019606533}
   m_CullTransparentMesh: 0
+--- !u!114 &2019606538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2019606533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7aa10f3134a9c5a4aa1e01997170e89b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Explosionclass: {fileID: 1444616465560960, guid: 768c0d3359cf2df42b8fb4f5256ccd71,
+    type: 2}

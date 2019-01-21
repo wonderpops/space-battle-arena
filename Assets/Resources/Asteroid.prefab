@@ -20,13 +20,13 @@ GameObject:
   m_Component:
   - component: {fileID: 4419902798015640}
   - component: {fileID: 212308048123613006}
+  - component: {fileID: 114831592286767430}
   - component: {fileID: 114112747868481864}
   - component: {fileID: 50222645826480056}
   - component: {fileID: 61065572111436378}
-  - component: {fileID: 114308671924342040}
   m_Layer: 0
   m_Name: Asteroid
-  m_TagString: Untagged
+  m_TagString: asteroid
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -158,13 +158,13 @@ MonoBehaviour:
   onSerializeRigidBodyOption: 2
   ownershipTransfer: 0
   ObservedComponents:
-  - {fileID: 114308671924342040}
+  - {fileID: 0}
   ObservedComponentsFoldoutOpen: 1
   viewIdField: 0
   instantiationId: -1
   currentMasterID: -1
   isRuntimeInstantiated: 0
---- !u!114 &114308671924342040
+--- !u!114 &114831592286767430
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
@@ -175,6 +175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b058e527cf88019498f78469a165721d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  asteroids: {fileID: 1296828859825586}
 --- !u!212 &212252693544763176
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -209,7 +210,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 85af7cfc7666387418ddc3f7300215f4, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
